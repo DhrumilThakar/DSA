@@ -1,3 +1,5 @@
+// This program prints all sub array in an array
+// A subarray is a contiguous part of an array. It can be defined as a sequence of elements that are consecutive in the original array.
 public class sub_array 
 {
     public static void sub(int arr[])

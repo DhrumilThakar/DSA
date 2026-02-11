@@ -21,7 +21,7 @@ public class sorting {
             int temp = arr[i];
             int j =i-1;
             while(j>=0 && arr[j]>temp){
-                temp = arr[j];
+                arr[j+1] = arr[j];
                 j--;
             }
             arr[j+1]=temp;
@@ -35,7 +35,7 @@ public class sorting {
     public static void selectionSort(int arr[]){
         for(int i =0;i<arr.length-1;i++){
             int minNumber =i;
-            for(int j=i+1;j<arr.length-1;j++){
+            for(int j=i+1;j<arr.length;j++){
                 if(arr[j]<arr[minNumber]){
                     minNumber = j;
                 }
@@ -91,11 +91,52 @@ public class sorting {
             System.out.print(i+" ");
         }
     }
+    
+    public static void quickSort(int arr[],int low, int high)
+    {
+        if(low<high){
+            int partion = partion(arr,low,high);
+            quickSort(arr,low,partion-1);
+            quickSort(arr,partion+1,high);
+        }
+            
+    }
+    public static int partion(int arr[],int low,int high){
+            int pivot = arr[low];
+            int i = low;
+            int j = high;
+            while(i<j){
+                while(arr[i]<=pivot && i<high){
+                    i++;
+                }
+                while(arr[j]>pivot && j>low){
+                    j--;
+                }
+                if(i<j){
+                    int temp = arr[i];
+                    arr[i]=arr[j];
+                    arr[j]=temp;
+                }
+            }
+            int temp = arr[low];
+            arr[low]=arr[j];
+            arr[j]=temp;
+            return j;
+        }
+        public static void printArray(int arr[]){
+            System.out.println("\nSorted array using Quick Sort: ");
+            for(int i:arr){
+                System.out.print(i+" ");
+            }
+        }
+
     public static void main(String[] args) {
-        int arr[] ={5,1,4,2,8};
-        bubbleSort(arr);
-        insertionSort(arr);
-        selectionSort(arr);
-        MergeSort(arr,0,arr.length-1);
+        int arr[] ={7,4,1,5,3};
+        // bubbleSort(arr);
+        // insertionSort(arr);
+        // selectionSort(arr);
+        // MergeSort(arr,0,arr.length-1);
+        quickSort(arr,0,arr.length-1);
+        printArray(arr);
     }    
 }
